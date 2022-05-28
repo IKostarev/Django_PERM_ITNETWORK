@@ -1,0 +1,8 @@
+body {
+    text-align: center;
+        background: url("/static/img/123.jpg")  50% 0 no-repeat fixed;
+        color: white;
+        height: 650px;
+        padding: 100px 0 0 0;   
+}
+ 
