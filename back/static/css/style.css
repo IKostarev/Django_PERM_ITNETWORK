@@ -1,8 +1,24 @@
 body {
     text-align: center;
-        background: url("/static/img/123.jpg")  50% 0 no-repeat fixed;
-        color: white;
-        height: 650px;
-        padding: 100px 0 0 0;   
+    background: url("/static/img/123.jpg")  50% 0 no-repeat fixed;
+    color: white;
+    height: 650px;
+    padding: 100px 0 0 0;   
 }
- 
+
+.turble_table {
+    text-align: center;
+    border: 3px solid #fff;
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+  
+.turble_table tr {    
+    border: 3px solid #fff;
+}
+
+.turble_table th {    
+    color: rgb(234, 0, 255);
+}
+

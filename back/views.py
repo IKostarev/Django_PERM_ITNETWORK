@@ -24,3 +24,4 @@ def login(request):
 
 def logout(request):
     pass
+

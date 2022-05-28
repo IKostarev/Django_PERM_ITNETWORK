@@ -3,7 +3,22 @@
 {% block content %}
     <h1>Welcome page</h1>
     <p>Hello everyone</p>
+    <table class="turble_table">
+        <tr>
+            <th><h2>Бренд</h2></td>
+            <th><h2>Цвет</h2></td>
+            <th><h2>Цена</h2></td>
+        </tr>
+            {% for i in car %}
+                <tr>
+                    <td><h2>{{ i.car_brand }}</h2></td>
+                    <td><h3>{{ i.car_color }}</h3></td>
+                    <td><h3>{{ i.car_price }}</h3></td>
+                </tr>
+            {% endfor %}        
+    </table>
 
-    <p>Not found...</p>
-
+    {% if car == null %}
+        <p>Not found...</p>
+    {% endif %}
 {% endblock %}
