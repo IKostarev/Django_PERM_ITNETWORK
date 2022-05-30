@@ -1,6 +1,6 @@
 from enum import unique
 
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 from django.db import models
 from back.user_manager import MyCustomUserManager
@@ -59,13 +59,8 @@ class CarChop(models.Model):
     buyers = models.ForeignKey(Buyer, on_delete=models.CASCADE)
 
 
-class MyCustomUser(AbstractBaseUser):
-    email = models.EmailField(
-        verbose_name='Электронная почта',
-        max_length=255,
-        unique=True,
-    )
-
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(verbose_name='Электронная почта', max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
@@ -98,4 +93,4 @@ class MyCustomUser(AbstractBaseUser):
         return self.admin
 
     class Meta:
-        db_table = 'mycustomuser'
+        db_table = 'users'

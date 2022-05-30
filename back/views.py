@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import authenticate, login as sing_in, logout as sing_out
+from django.contrib.auth import authenticate, login as sing_in, logout as sing_out
 from . import models
 
 
