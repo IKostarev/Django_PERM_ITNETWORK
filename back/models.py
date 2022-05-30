@@ -1,7 +1,9 @@
-from distutils.command import upload
 from enum import unique
-from msilib.schema import CustomAction
+
+from django.contrib.auth.models import AbstractBaseUser
+
 from django.db import models
+from back.user_manager import MyCustomUserManager
 
 
 
@@ -37,3 +39,66 @@ class Car(models.Model):
 
     class Meta:
         db_table = 'car'
+
+
+class Buyer(models.Model):
+    name = models.CharField(verbose_name='Имя покупателя', max_length=32)
+    money = models.IntegerField(verbose_name='Количество денег', default=0)
+
+    cars = models.ManyToManyField(Car)
+
+    class Meta:
+        db_table = 'buyer'
+
+
+class CarChop(models.Model):
+    address = models.CharField(verbose_name='Адрес магазина', max_length=300)
+    is_opening = models.BooleanField(default=True)
+
+    cars = models.ManyToManyField(Car)
+    buyers = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+
+
+class MyCustomUser(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name='Электронная почта',
+        max_length=255,
+        unique=True,
+    )
+
+    is_active = models.BooleanField(default=True)
+    staff = models.BooleanField(default=False)
+    admin = models.BooleanField(default=False)
+
+
+    objects = MyCustomUserManager()
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+
+    def get_full_name(self):
+        return self.email
+
+    def get_short_name(self):
+        return self.email
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin
+
+
+    class Meta:
+        db_table = 'mycustomuser'
