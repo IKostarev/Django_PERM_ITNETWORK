@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import authenticate, login as sing_in, logout as sing_out
 from . import models
+
 
 
 def car_set(request):
@@ -16,14 +19,29 @@ def car_set(request):
 
 
 def login(request):
+    context = {}
     if request.method == 'POST':
         email = request.POST.get('email', None)
         password = request.POST.get('password', None)
+        if email and password:
+            user = authenticate(request, username=email, password=password)
+        else:
+            context.update({'error': 'Форма содержит пустые поля!'})
 
+        if user is not None and user.is_active:
+            sing_in(request, user)
+            return redirect(to=reverse(''))
+        else:
+            context.update({'error': 'Пользователь не активен'})
     else:
         return render(request, template_name='back/login.html', context={})
 
 
 def logout(request):
-    pass
+    sing_out(request)
+    path = request.GET.get('path', None)
 
+    if path is None:
+        path = '/'
+
+    return redirect(path)
