@@ -70,11 +70,9 @@ class MyCustomUser(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
 
-
     objects = MyCustomUserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
 
     def get_full_name(self):
         return self.email
@@ -98,7 +96,6 @@ class MyCustomUser(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
-
 
     class Meta:
         db_table = 'mycustomuser'
