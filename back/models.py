@@ -69,6 +69,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+
+    class Meta:
+        db_table = 'users'
+
     def get_full_name(self):
         return self.email
 
@@ -92,5 +96,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_admin(self):
         return self.admin
 
-    class Meta:
-        db_table = 'users'

@@ -1,7 +1,10 @@
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as sing_in, logout as sing_out
+
+from back.serializer import CarsSerializer
 from . import models
+from rest_framework import generics
 
 
 
@@ -45,3 +48,8 @@ def logout(request):
         path = '/'
 
     return redirect(path)
+
+
+class CarsAPIView(generics.ListAPIView):
+    queryset = models.Car.objects.all()
+    serializer_class = CarsSerializer

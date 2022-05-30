@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     'back',
     'psycopg2',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
