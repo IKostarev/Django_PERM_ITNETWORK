@@ -32,7 +32,7 @@ class Car(models.Model):
     car_type = models.IntegerField(verbose_name='Тип машины', choices=car_model)
     car_price = models.FloatField(verbose_name='Цена машины', default=0)
     is_sell_now = models.BooleanField(default=True)
-    car_image = models.ImageField(unique=True, blank=True, verbose_name='Изображение машины', upload_to='back/uploads')
+    car_image = models.ImageField(unique=True, blank=True, verbose_name='Изображение машины в формате JPG', upload_to='back/templates/back/uploads')
 
     created_at = models.DateTimeField(verbose_name='Дата и время создания машины', auto_now=True)
     updated_at = models.DateTimeField(verbose_name='Дата и время обновления машины', auto_now_add=True)

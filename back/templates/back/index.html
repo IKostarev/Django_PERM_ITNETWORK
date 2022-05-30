@@ -6,14 +6,20 @@
     <table class="turble_table">
         <tr>
             <th><h2>Бренд</h2></td>
+            <th><h2>Номер машины</h2></td>
             <th><h2>Цвет</h2></td>
             <th><h2>Цена</h2></td>
+            <th><h2>Машины в продаже</h2></td>
+            <th><h2>Изображение машины</h2></td>
         </tr>
             {% for i in car %}
                 <tr>
                     <td><h2>{{ i.car_brand }}</h2></td>
+                    <td><h2>{{ i.car_number }}</h2></td>
                     <td><h3>{{ i.car_color }}</h3></td>
                     <td><h3>{{ i.car_price }}</h3></td>
+                    <td><h3>{{ i.is_sell_now }}</h3></td>
+                    <td><h3><img src="uploads/" + i + ".jpg"></h3></td>            
                 </tr>
             {% endfor %}        
     </table>
