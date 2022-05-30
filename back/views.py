@@ -4,10 +4,12 @@ from . import models
 
 def car_set(request):
     car = models.Car.objects.all()
+    buyer = models.Buyer.objects.all()
 
     context = {
         'title': 'Список автомобилей',
         'car': car,
+        'buyer': buyer,
     }
 
     return render(request, template_name='back/index.html', context=context)
